@@ -8,7 +8,7 @@ startBtn.addEventListener('click', countdown);
 startBtn.addEventListener('click', showQuestions);
 
 // Questions Object with Array of Questions
-codeQuiz = [
+var codeQuiz = [
     {
         question: "Commonly used data types DO not include:",
         answers: { 1: "alerts", 2: "booleans", 3: "numbers", 4: "strings" },
@@ -32,7 +32,7 @@ codeQuiz = [
 ];
 
 
-// Function for 75 second countdown
+// Countdown Function
 function countdown() {
     var timeLeft = 75;
     var timeInterval = setInterval( function() {
@@ -67,4 +67,3 @@ function showQuestions() {
             quizContainerEl.innerHTML = output.join("");
 }
 
-// 
