@@ -46,6 +46,31 @@ header {
     border-radius: 8px;
 }
 
-.startBtn:hover {
+.startBtn:hover,
+#answers button:hover {
     background: #d100d1;
+}
+
+#questions {
+    margin-top: 150px;
+    padding-bottom: 15px;
+    font-size: 4.5rem;
+}
+
+#answers {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#answers button {
+    font-size: 3rem;
+    color: #ffffff;
+    background: #560bad;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    width: 50%;
+    text-align: left;
 }
