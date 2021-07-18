@@ -74,3 +74,11 @@ header {
     width: 50%;
     text-align: left;
 }
+
+.answer {
+    width: 50%;
+    font-size: 8rem;
+    font-style: italic;
+    justify-content: center;
+    color: grey;
+}

@@ -2,13 +2,14 @@ var quizContainerEl = document.querySelector(".quizContainer");
 var highScoreEl = document.querySelector(".highScore");
 var timerEl = document.querySelector(".timer");
 var startBtn = document.querySelector(".startBtn");
+var answerEl = document.querySelector(".answer");
 
 // Event Listeners
 startBtn.addEventListener('click', countdown);
-startBtn.addEventListener('click', showQuestions);
+startBtn.addEventListener('click', questions);
 
 // Questions Object with Array of Questions
-var codeQuiz = [
+var quizQuestions = [
     {
         question: "Commonly used data types DO not include:",
         answers: { 1: "alerts", 2: "booleans", 3: "numbers", 4: "strings" },
@@ -31,10 +32,11 @@ var codeQuiz = [
     }
 ];
 
+var score = 75;
+var timeLeft = 75;
 
 // Countdown Function
 function countdown() {
-    var timeLeft = 75;
     var timeInterval = setInterval( function() {
         timeLeft--;
         timerEl.textContent = `Time: ${timeLeft}`;
@@ -45,25 +47,48 @@ function countdown() {
     },1000)
 }
 
+// Question Variables
+var currentQuestions = 0;
+var question = quizQuestions[currentQuestions];
+
 // Function to Show Questions
-function showQuestions() {
-        var questionsCounter = 0;
-        var question = codeQuiz[questionsCounter];
+function questions() {
         var output = [];
         var answers = [];
-    
-        for (answer in question.answers) {
+
+        for (var answer = 1; answer <= quizQuestions.length; answer++) {
             answers.push(
-                        `<div>
-                        <button name="question${questionsCounter}" onclick='checkAnswer(${answer})'>${answer} ${question.answers[answer]}</button>           
-                        </div>`
+                `<div>
+                <button name="question${currentQuestions}" onclick='answerCheck(${answer})'>${answer} ${question.answers[answer]}</button>           
+                </div>`
             );
         }
 
-        output.push(
-                    `<div id="questions"> ${question.question} </div>
-                    <div id="answers"> ${answers.join("")} </div>`
-    );
-            quizContainerEl.innerHTML = output.join("");
+        output.push(`<div id="questions">${question.question}</div>
+                    <div id="answers">${answers.join("")}</div>`);
+
+        quizContainerEl.innerHTML = output.join("");
+}
+
+// Function to Check Answers
+function answerCheck(answer) {
+    if(answer === parseInt(quizQuestions[currentQuestions].correctAnswer)) {
+        display("Correct!");
+    } else {
+        display("Wrong!");
+        if(score <= 9) {
+            timeLeft = 0;
+            score = timeLeft;
+        } 
+        timerEl.innerHTML = `Time: ${timeLeft}`;
+    }
+}
+
+// Function to Display Answer
+function display(answer) {
+    answerEl.innerHTML = `<div><hr><p>${answer}</p></div>`;
+    setInterval(() => {
+    answerEl.innerHTML = "";
+    }, 1000);
 }
 
