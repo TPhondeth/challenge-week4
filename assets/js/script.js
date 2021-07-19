@@ -49,7 +49,6 @@ function countdown() {
 // Question Variables
 var currentQuestions = 0;
 var question = quizQuestions[currentQuestions];
-var questionNumber = quizQuestions.length - 1;
 
 // Function to Show Questions
 function questions() {
@@ -77,18 +76,12 @@ function answerCheck(answer) {
     } else {
         display("Wrong!");
         } 
-        timerEl.innerHTML = `Time: ${timeLeft}`;
-        questions();
+        currentQuestions++;
     }
 
 // Function to Display Answer
 function display(answer) {
     answerEl.innerHTML = `<div><hr><p>${answer}</p></div>`;
-    setInterval(() => {
-    answerEl.innerHTML = "";
+    setInterval( function() {
     }, 1000);
-    
 }
-
-
-
