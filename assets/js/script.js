@@ -32,7 +32,6 @@ var quizQuestions = [
     }
 ];
 
-var score = 75;
 var timeLeft = 75;
 
 // Countdown Function
@@ -50,6 +49,7 @@ function countdown() {
 // Question Variables
 var currentQuestions = 0;
 var question = quizQuestions[currentQuestions];
+var questionNumber = quizQuestions.length - 1;
 
 // Function to Show Questions
 function questions() {
@@ -66,7 +66,7 @@ function questions() {
 
         output.push(`<div id="questions">${question.question}</div>
                     <div id="answers">${answers.join("")}</div>`);
-
+                    
         quizContainerEl.innerHTML = output.join("");
 }
 
@@ -76,13 +76,10 @@ function answerCheck(answer) {
         display("Correct!");
     } else {
         display("Wrong!");
-        if(score <= 9) {
-            timeLeft = 0;
-            score = timeLeft;
         } 
         timerEl.innerHTML = `Time: ${timeLeft}`;
+        questions();
     }
-}
 
 // Function to Display Answer
 function display(answer) {
@@ -90,5 +87,8 @@ function display(answer) {
     setInterval(() => {
     answerEl.innerHTML = "";
     }, 1000);
+    
 }
+
+
 
