@@ -76,9 +76,8 @@ header {
 }
 
 .answer {
-    width: 50%;
+    width: 100%;
     font-size: 8rem;
     font-style: italic;
-    justify-content: center;
-    color: grey;
+    color: #6c757d;
 }
